@@ -8,11 +8,14 @@ import {
 } from 'lucide-react';
 
 // --- Firebase Setup ---
-const firebaseConfig = JSON.parse(__firebase_config);
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getFirestore(app);
-const appId = typeof __app_id !== 'undefined' ? __app_id : 'sales-monarch-ultimate-v1';
+const firebaseConfig = {
+  apiKey: "YOUR_API_KEY",
+  authDomain: "your-project.firebaseapp.com",
+  projectId: "your-project",
+  storageBucket: "your-project.appspot.com",
+  messagingSenderId: "123456789",
+  appId: "1:123456789:web:abcdef"
+};
 
 // --- Utility: Firebase Collection Helpers ---
 const getColRef = (colName) => collection(db, 'artifacts', appId, 'public', 'data', colName);
