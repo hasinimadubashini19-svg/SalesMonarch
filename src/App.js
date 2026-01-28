@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { initializeApp } from 'firebase/app';
-import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from 'firebase/auth';
+import { getAuth, signInAnonymously, onAuthStateChanged } from 'firebase/auth';
 import { getFirestore, doc, setDoc, getDoc, collection, onSnapshot, addDoc, deleteDoc, updateDoc, query } from 'firebase/firestore';
 import { 
   LayoutDashboard, Store, FileText, Plus, X, Trash2, Crown, 
@@ -8,14 +8,20 @@ import {
 } from 'lucide-react';
 
 // --- Firebase Setup ---
+// මේක ඇතුළට ඔයාගේ Firebase Config එක පස්සේ දාන්න. දැනට build එක වැඩ කරයි.
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "your-project.firebaseapp.com",
-  projectId: "your-project",
-  storageBucket: "your-project.appspot.com",
-  messagingSenderId: "123456789",
-  appId: "1:123456789:web:abcdef"
+  apiKey: "TEMP_KEY",
+  authDomain: "temp.firebaseapp.com",
+  projectId: "temp-project",
+  storageBucket: "temp.appspot.com",
+  messagingSenderId: "00000000",
+  appId: "0:00000:web:0000"
 };
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+const appId = 'sales-rep-app-v1';
 
 // --- Utility: Firebase Collection Helpers ---
 const getColRef = (colName) => collection(db, 'artifacts', appId, 'public', 'data', colName);
